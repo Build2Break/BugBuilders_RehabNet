@@ -167,6 +167,489 @@ To run the rehabilitation monitoring prototype:
 
 The **AI-Based Rehabilitation Monitoring System** bridges the gap between rigid computer vision metrics and the fluid reality of physical therapy. By focusing on **consistency**, **time-based evaluation**, and **forgiving thresholds**, it provides a tool that is not just accurate, but **clinically relevant** and **encouraging** for patients on their road to recovery.
 
+## 📁 Project Structure Overview
+
+### 1. **B2B/** - Main Rehabilitation Platform
+The core B2B application for managing rehabilitation services with doctor and patient dashboards.
+
+**Components:**
+- **backend/** - Express.js REST API server
+- **rehabnet/** - React frontend application using Vite
+
+**Key Features:**
+- Patient rehabilitation profile management
+- Exercise assignment and tracking
+- Progress logging and monitoring
+- OTP-based authentication
+- Real-time patient data updates
+
+---
+
+### 2. **B2B_Admin/** - Admin Management Dashboard
+Administrative interface for managing the entire system.
+
+**Components:**
+- **RehabNet/** - React admin frontend using Vite
+- **RNBackend/** - Express.js backend for admin operations
+
+**Key Features:**
+- Doctor management (CRUD operations)
+- Patient assignment to doctors
+- System metrics and dashboards
+- Admin user authentication
+- Doctor-patient relationship management
+
+---
+
+### 3. **final/** - AI-Powered Exercise Validation (Python)
+Pose detection and exercise form validation using machine learning.
+
+**Components:**
+- **app/** - FastAPI application for pose analysis
+- **assets/Video/** - Training data and reference videos
+
+**Key Features:**
+- Real-time pose detection using MediaPipe
+- Exercise form validation
+- Pose comparison algorithms
+- Session-based exercise scoring
+
+---
+
+## 🛠️ Technology Stack
+
+| Component | Technology |
+|-----------|-----------|
+| Backend (B2B) | Node.js, Express.js, MongoDB |
+| Frontend (B2B) | React 19, Vite, React Router |
+| Admin Backend | Node.js, Express.js, MongoDB |
+| Admin Frontend | React 19, Vite, React Router |
+| Exercise AI | Python, FastAPI, MediaPipe, OpenCV |
+| Containerization | Docker, Docker Compose |
+| Security | JWT, bcryptjs, Helmet, Rate Limiting, NoSQL Sanitization |
+
+---
+
+## 📋 Prerequisites
+
+### For All Services
+- **Docker** & **Docker Compose** (Recommended for easy setup)
+- **Git**
+
+### For Local Development (without Docker)
+- **Node.js** (v16 or higher) - for B2B and B2B_Admin
+- **Python** (v3.8 or higher) - for exercise validation
+- **MongoDB** (local or cloud instance)
+
+### Required Ports
+- **5000** - B2B Backend
+- **5173** - B2B Frontend (rehabnet)
+- **5001** - B2B_Admin Backend (RNBackend)
+- **5174** - B2B_Admin Frontend (RehabNet)
+- **8000** - Final App (Python/FastAPI)
+
+---
+
+## 🚀 Quick Start Guide
+
+### Option 1: Using Docker (Recommended)
+
+#### B2B Platform
+```bash
+cd d:\end1\B2B
+docker-compose up --build
+```
+- Backend: http://localhost:5000
+- Frontend: http://localhost:5173
+
+#### B2B Admin Platform
+```bash
+cd d:\end1\B2B_Admin
+docker-compose up --build
+```
+- Backend: http://localhost:5001
+- Frontend: http://localhost:5174
+
+#### Python Exercise Validation App
+```bash
+cd d:\end1\final\app
+pip install -r requirements.txt
+python main.py
+```
+- API: http://localhost:8000
+
+---
+
+### Option 2: Local Development Setup
+
+#### B2B Backend Setup
+```bash
+cd d:\end1\B2B\backend
+
+# Install dependencies
+npm install
+
+# Create .env file with:
+# MONGO_URI=mongodb://your-mongo-uri
+# JWT_SECRET=your-jwt-secret
+# NODE_ENV=development
+# PORT=5000
+
+# Run development server
+npm run dev
+```
+
+#### B2B Frontend Setup
+```bash
+cd d:\end1\B2B\rehabnet
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+```
+
+#### B2B_Admin Backend Setup
+```bash
+cd d:\end1\B2B_Admin\RNBackend
+
+# Install dependencies
+npm install
+
+# Create .env file with required variables
+npm run dev
+```
+
+#### B2B_Admin Frontend Setup
+```bash
+cd d:\end1\B2B_Admin\RehabNet
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+```
+
+#### Python App Setup
+```bash
+cd d:\end1\final\app
+
+# Create virtual environment
+python -m venv venv
+venv\Scripts\activate
+
+# Install dependencies
+pip install fastapi uvicorn opencv-python mediapipe numpy scipy
+
+# Run the app
+python main.py
+```
+
+---
+
+## 📂 Folder Organization
+
+### B2B Backend Structure
+```
+backend/
+├── config/          # Database and environment configuration
+├── controllers/     # Business logic for each feature
+│   ├── authController.js        # Authentication logic
+│   ├── patientController.js     # Patient management
+│   ├── exerciseController.js    # Exercise management
+│   ├── otpController.js         # OTP handling
+│   └── progressController.js    # Progress tracking
+├── middleware/      # Express middleware
+│   ├── authMiddleware.js        # JWT verification
+│   ├── errorHandler.js          # Error handling
+│   └── noSqlSanitizer.js        # NoSQL injection prevention
+├── models/          # MongoDB schemas
+│   ├── Patient.js
+│   ├── Doctor.js
+│   ├── Exercise.js
+│   ├── ProgressLog.js
+│   ├── RehabProfile.js
+│   └── Otp.js
+├── routes/          # API endpoints
+│   ├── authRoutes.js
+│   ├── patientRoutes.js
+│   ├── exerciseRoutes.js
+│   ├── otpRoutes.js
+│   └── progressRoutes.js
+├── utils/           # Utility functions
+│   ├── emailService.js          # Email notifications
+│   ├── seeder.js                # Database seeding
+│   └── debug-db.js              # Database debugging
+└── server.js        # Main server entry point
+```
+
+### B2B Frontend Structure
+```
+rehabnet/
+├── src/
+│   ├── components/              # Reusable React components
+│   │   ├── ExerciseManager.jsx  # Exercise management UI
+│   │   ├── ExerciseTimer.jsx    # Timer for exercises
+│   │   └── ProtectedRoute.jsx   # Route protection
+│   ├── pages/                   # Page components
+│   │   ├── Login.jsx            # Doctor login
+│   │   ├── PatientLogin.jsx     # Patient login
+│   │   ├── Dashboard.jsx        # Doctor dashboard
+│   │   ├── PatientDashboard.jsx # Patient dashboard
+│   │   ├── ExercisePage.jsx     # Exercise details
+│   │   └── Home.jsx             # Home page
+│   ├── utils/
+│   │   └── api.js               # API client setup
+│   └── App.jsx                  # Main app component
+└── vite.config.js               # Vite configuration
+```
+
+### B2B_Admin Backend Structure
+```
+RNBackend/
+├── src/
+│   ├── app.js                   # Express app setup
+│   ├── server.js                # Server entry point
+│   ├── config/                  # Configuration files
+│   ├── controllers/             # Business logic
+│   ├── middleware/              # Custom middleware
+│   ├── models/                  # MongoDB models
+│   ├── routes/                  # API routes
+│   └── utils/                   # Utility functions
+```
+
+### B2B_Admin Frontend Structure
+```
+RehabNet/
+├── src/
+│   ├── components/              # Reusable components
+│   │   ├── AdminNavbar.jsx
+│   │   ├── Input.jsx
+│   │   └── ProtRoute.jsx
+│   ├── context/
+│   │   └── AuthContext.jsx      # Authentication state
+│   ├── pages/                   # Page components
+│   │   ├── Login.jsx
+│   │   ├── Dashboard.jsx
+│   │   ├── DoctorList.jsx
+│   │   ├── DoctorAdd.jsx
+│   │   ├── DoctorUpdate.jsx
+│   │   ├── DoctorDelete.jsx
+│   │   └── DoctorPatients.jsx
+│   ├── api/
+│   │   └── auth_api.js          # Authentication API
+│   ├── services/
+│   │   └── token.service.js     # Token management
+│   └── App.jsx
+```
+
+### Python App Structure
+```
+final/app/
+├── main.py                      # FastAPI application
+│   ├── Session management
+│   ├── Pose detection
+│   ├── Exercise validation
+│   └── Scoring algorithms
+└── assets/Video/                # Reference video data
+    └── yoga_data/               # Training videos
+```
+
+---
+
+## 🔄 API Endpoints Overview
+
+### B2B Backend (`/api/`)
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/auth/login` | POST | User login (doctor/patient) |
+| `/auth/signup` | POST | User registration |
+| `/patients` | GET/POST | Patient management |
+| `/patients/:id` | GET/PUT/DELETE | Individual patient operations |
+| `/exercises` | GET/POST | Exercise management |
+| `/progress` | GET/POST | Progress logging |
+| `/otp/send` | POST | Send OTP for verification |
+
+### B2B_Admin Backend (`/api/`)
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/auth/login` | POST | Admin login |
+| `/doctors` | GET/POST | Doctor management |
+| `/doctors/:id` | GET/PUT/DELETE | Individual doctor operations |
+| `/doctors/:id/patients` | GET | Doctor's assigned patients |
+
+### Python FastAPI (`/`)
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/video_feed` | GET | Real-time video stream |
+| `/validate_exercise` | POST | Validate exercise form |
+| `/session/start` | POST | Start exercise session |
+| `/session/end` | POST | End exercise session |
+
+---
+
+## 🔐 Environment Variables
+
+### B2B Backend (`.env`)
+```
+MONGO_URI=mongodb://username:password@host:port/database
+JWT_SECRET=your-secret-key
+PORT=5000
+NODE_ENV=development
+SMTP_HOST=your-smtp-host
+SMTP_PORT=587
+SMTP_USER=your-email
+SMTP_PASSWORD=your-password
+```
+
+### B2B_Admin Backend (`.env`)
+```
+MONGO_URI=mongodb://username:password@host:port/database
+JWT_SECRET=your-secret-key
+PORT=5001
+NODE_ENV=development
+```
+
+---
+
+## 🏃 Running the Complete System
+
+### All Services at Once (Using Docker)
+```bash
+# Terminal 1: B2B Platform
+cd d:\end1\B2B
+docker-compose up --build
+
+# Terminal 2: B2B Admin
+cd d:\end1\B2B_Admin
+docker-compose up --build
+
+# Terminal 3: Python App
+cd d:\end1\final\app
+pip install -r requirements.txt
+python main.py
+```
+
+---
+
+## 📝 Development Workflow
+
+### Frontend Development
+1. Navigate to the respective `rehabnet/` or `RehabNet/` folder
+2. Run `npm run dev` to start Vite dev server
+3. Vite will hot-reload changes automatically
+
+### Backend Development
+1. Navigate to `backend/` or `RNBackend/` folder
+2. Run `npm run dev` to start nodemon
+3. Changes will auto-restart the server
+
+### Python App Development
+1. Navigate to `final/app/`
+2. Run `python main.py`
+3. Modifications require manual restart
+
+---
+
+## 🧪 Building for Production
+
+### Frontend Build
+```bash
+cd rehabnet  # or RehabNet for admin
+npm run build
+npm run preview
+```
+
+### Backend Docker Build
+```bash
+docker build -t rehabnet-backend .
+docker run -p 5000:5000 rehabnet-backend
+```
+
+### Python App Distribution
+```bash
+# Create virtual environment for production
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### Port Already in Use
+```bash
+# Find and kill process using port
+netstat -ano | findstr :5000
+taskkill /PID <PID> /F
+```
+
+### MongoDB Connection Issues
+- Verify MongoDB is running
+- Check connection string in `.env`
+- Ensure network access if using cloud MongoDB
+
+### Docker Issues
+```bash
+# Clean up containers and images
+docker-compose down -v
+docker system prune -a
+docker-compose up --build
+```
+
+### Node Modules Issues
+```bash
+# Clear node_modules and reinstall
+rmdir /s /q node_modules
+npm install
+```
+
+---
+
+## 📚 Additional Resources
+
+- [Express.js Documentation](https://expressjs.com/)
+- [React Documentation](https://react.dev/)
+- [Vite Documentation](https://vitejs.dev/)
+- [MongoDB Documentation](https://docs.mongodb.com/)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [Docker Documentation](https://docs.docker.com/)
+
+---
+
+## 👥 Project Team
+
+RehabNet - Comprehensive Rehabilitation Management System
+
+---
+
+## 📄 License
+
+ISC
+
+---
+
+## ✅ Checklist for First-Time Setup
+
+- [ ] Clone/download the repository
+- [ ] Install Docker or Node.js/Python locally
+- [ ] Navigate to each project directory
+- [ ] Create `.env` files with required variables
+- [ ] Run `npm install` for Node.js projects
+- [ ] Run `pip install -r requirements.txt` for Python projects
+- [ ] Verify all ports are available (5000, 5173, 5001, 5174, 8000)
+- [ ] Start services (Docker or local)
+- [ ] Access frontends in browser
+- [ ] Test API endpoints
+
+---
+
+**Last Updated:** January 2026
+
+
 
 
 
