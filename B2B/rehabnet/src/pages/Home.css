@@ -1,0 +1,246 @@
+.home-container {
+    min-height: 100vh;
+    font-family: var(--font-main);
+    color: var(--text-main);
+    background: var(--bg-app);
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 1rem;
+    position: relative;
+}
+
+.nav-item:hover {
+    color: var(--primary);
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--primary);
+    transition: var(--transition);
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    padding: 6rem 1rem 8rem;
+    background: radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.05) 0%, transparent 50%);
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    animation: fadeIn 1s ease-out 0.2s backwards;
+}
+
+.hero-content h1 {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.hero-content .highlight {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    display: inline-block;
+}
+
+.hero-content p {
+    font-size: 1.4rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto 1rem;
+}
+
+/* Portal Section */
+.portal-section {
+    padding: 4rem 2rem;
+    position: relative;
+    z-index: 10;
+    margin-top: -4rem;
+}
+
+.portal-section h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+    color: var(--text-main);
+    text-align: center;
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.4s forwards;
+}
+
+.portal-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.portal-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    width: 380px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 1s ease-out 0.6s forwards;
+}
+
+.portal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.portal-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+.portal-card:hover::before {
+    opacity: 1;
+}
+
+.card-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+.portal-card h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.portal-card p {
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.card-link {
+    color: var(--primary);
+    font-weight: 600;
+    margin-top: auto;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.portal-card:hover .card-link {
+    transform: translateX(5px);
+    color: var(--primary-hover);
+}
+
+/* Features Section */
+.features-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature {
+    text-align: center;
+    padding: 2.5rem;
+    background: var(--bg-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.feature:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-light);
+}
+
+.feature h3 {
+    color: var(--text-main);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.feature p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.home-footer {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    border-top: 1px solid var(--primary-light);
+}

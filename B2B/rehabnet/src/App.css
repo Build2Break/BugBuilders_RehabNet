@@ -1,0 +1,5 @@
+/* Removing default Vite layout constraints */
+#root {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,300 @@
+/* Exercise Manager Shared Styles */
+.exercise-manager {
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: var(--font-main);
+    animation: fadeIn 0.6s ease-out;
+}
+
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.exercise-header h2 {
+    font-size: 2rem;
+    color: var(--text-main);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.back-btn {
+    background: white;
+    color: var(--text-muted);
+    border: 1px solid #e2e8f0;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: translateX(-4px);
+    box-shadow: var(--shadow-sm);
+}
+
+.exercise-controls {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+}
+
+.add-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.add-exercise-form {
+    background: white;
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.add-exercise-form h3 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    color: var(--text-main);
+}
+
+.exercises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.exercise-card {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 1px solid #f1f5f9;
+    position: relative;
+    overflow: hidden;
+}
+
+.exercise-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-light);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.card-stats {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.delete-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: #fee2e2;
+    color: var(--danger);
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.delete-icon:hover {
+    transform: rotate(90deg);
+    background: var(--danger);
+    color: white;
+}
+
+.edit-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary-light);
+    color: var(--primary);
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    margin-right: 0.5rem;
+}
+
+.edit-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.progress-bar-container small {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.progress-bar {
+    height: 8px;
+    background: #f1f5f9;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 4px;
+    transition: width 1s ease-out;
+}
+
+.status-complete {
+    color: #16a34a;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+/* Score Badges for ExerciseManager */
+.set-scores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.score-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.score-badge.pass {
+    background-color: #dcfce7;
+    color: #16a34a;
+}
+
+.score-badge.fail {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+/* Chart Container */
+.chart-container {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.save-btn {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    border: none;
+    padding: 0.875rem 2rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+}

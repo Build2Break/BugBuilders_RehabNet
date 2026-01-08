@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Premium Color Palette */
+  --primary: #4f46e5;
+  /* Indigo 600 */
+  --primary-hover: #4338ca;
+  /* Indigo 700 */
+  --primary-light: #e0e7ff;
+  /* Indigo 100 */
+
+  --secondary: #0ea5e9;
+  /* Sky 500 */
+  --accent: #10b981;
+  /* Emerald 500 */
+
+  --bg-app: #f8fafc;
+  /* Slate 50 */
+  --bg-surface: #ffffff;
+
+  --text-main: #1e293b;
+  /* Slate 800 */
+  --text-muted: #64748b;
+  /* Slate 500 */
+  --text-light: #94a3b8;
+  /* Slate 400 */
+
+  --danger: #ef4444;
+  /* Red 500 */
+  --success: #22c55e;
+  --warning: #f59e0b;
+
+  /* Typography */
+  --font-main: 'Outfit', system-ui, -apple-system, sans-serif;
+
+  /* Spacing & Radius */
+  --radius-sm: 0.5rem;
+  /* 8px */
+  --radius-md: 0.75rem;
+  /* 12px */
+  --radius-lg: 1rem;
+  /* 16px */
+  --radius-full: 9999px;
+
+  /* Shadows (Soft & Modern) */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-glow: 0 0 15px rgba(79, 70, 229, 0.3);
+
+  /* Animations */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --slide-up: 30px;
+}
+
+/* Global Reset & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-main);
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Smooth Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button Reset & Base */
+button {
+  font-family: var(--font-main);
+}
