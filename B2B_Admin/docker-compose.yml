@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./RNBackend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./RNBackend/.env
+
+  frontend:
+    build: ./RehabNet
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
